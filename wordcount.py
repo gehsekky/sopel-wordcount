@@ -90,7 +90,7 @@ class DataProvider:
             )
         """, (offset,))
         totals = self.dbcursor.fetchone()
-        if totals is None:
+        if totals is None or totals[0] is None:
             msg = "nothing could be found."
         else:
             msg = totals[0]
