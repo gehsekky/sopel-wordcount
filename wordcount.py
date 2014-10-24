@@ -83,7 +83,7 @@ class DataProvider:
         self.dbcursor.execute("""
             select group_concat(msg, ', ') from (
                 select (
-                    (select count(*) from wordcount b where a.words >= b.words) || '. ' || nick || '(' || words || ')'
+                    (select count(*) + 1 from wordcount b where a.words < b.words) || '. ' || nick || '(' || words || ')'
                 ) as msg
                 from wordcount a
                 order by words desc limit 10 offset ?
@@ -91,7 +91,7 @@ class DataProvider:
         """, (offset,))
         totals = self.dbcursor.fetchone()
         if totals is None:
-            msg = "there are no wordcounts in the database."
+            msg = "nothing could be found."
         else:
             msg = totals[0]
         self.conn.close()
