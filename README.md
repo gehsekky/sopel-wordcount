@@ -1,4 +1,4 @@
-willie-wordcount
+sopel-wordcount
 ================
 
-A module for willie that keeps a word count of users in a given IRC channel.
+A module for sopel that keeps a word count of users in a given IRC channel.
